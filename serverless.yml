@@ -1,0 +1,40 @@
+service: postoffice
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  region: us-east-1
+  stage: dev
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  environment:
+    NODE_ENV: development
+    POSTOFFICE_URL: https://apihom.correios.com.br
+    POSTOFFICE_USERNAME: testeint
+    POSTOFFICE_PASSWORD: 123456
+    POSTOFFICE_POSTALCARD: "0073423777"
+    TOKEN_URN: token/v1/
+    PACKET_URN: packet/v1/
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - sqs:ReceiveMessage
+        - sqs:DeleteMessage
+        - sqs:GetQueueAttributes 
+      Resource: "*"
+
+functions:
+  package:
+    handler: handler.package
+  units:
+    handler: handler.units
+  cn38:
+    handler: handler.cn38
+
+package:
+  exclude:
+    - test/**
+
+plugins:
+  - serverless-offline

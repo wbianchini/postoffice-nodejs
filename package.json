@@ -1,0 +1,22 @@
+{
+  "name": "postoffice",
+  "version": "1.0.0",
+  "description": "AWS lambda to handle SQS queue and request to post office",
+  "main": "handler.js",
+  "scripts": {
+    "test": "ava --verbose --serial 'test/**'"
+  },
+  "author": "william.bianchini@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.840.0",
+    "base-64": "^1.0.0",
+    "log4js": "^6.3.0",
+    "node-fetch": "^2.6.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "serverless-offline": "^6.8.0"
+  }
+}
